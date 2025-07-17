@@ -24,7 +24,7 @@ class categoryController {
     async createCategory(req, res) {
         try {
             const { name, icon, products } = req.body;
-            const answer = await categoryService.createCategory(name, icon, products);
+            const categoryCreated = await categoryService.createCategory(name, icon, products);
 
             if (!name || !icon || !products) {
                 res
@@ -34,7 +34,7 @@ class categoryController {
 
                 res
                 .status(201)
-                .json(answer);
+                .json(categoryCreated);
 
         } catch (error) {
                 res
