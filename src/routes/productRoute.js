@@ -2,8 +2,8 @@ const express = require('express');
 const productRoute = express.Router();
 const productController  = require('../controllers/productController');
 
-productRoute.get('/products', productControl.listProducts);
-productRoute.post('/product', productControl.createProduct);
+productRoute.get('/products', productController.listProducts);
+productRoute.post('/product', productController.createProduct);
 productRoute.get('/:categoryId/products', productController.listProductsByCategory )
 
 productRoute.get('/', (req, res) => {
