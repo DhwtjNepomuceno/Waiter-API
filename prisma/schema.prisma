@@ -1,9 +1,50 @@
 datasource db {
     provider = "sqlite"
-    url = "file:./dev.db"
+    url      = "file:./dev.db"
 }
+
 generator client {
     provider = "prisma-client-js"
 }
 
+enum Status {
+    Waiting
+    In_Production
+    Done
+}
 
+model Category {
+    id       String    @id @default(uuid())
+    name     String
+    icon     String
+    products Product[]
+}
+
+model Product {
+    id          String   @id @default(uuid())
+    name        String
+    description String
+    price       Decimal
+    imagePath   String
+    category    Category @relation(fields: [categoryId], references: [id])
+    categoryId  String
+
+    order_products order_products[]
+}
+
+model Order {
+    id             String           @id @default(uuid())
+    clientTable    String
+    status         Status           @default(Waiting)
+    createdAt      DateTime         @default(now())
+    order_products order_products[]
+}
+
+model order_products {
+    id        String  @id @default(uuid())
+    order     Order   @relation(fields: [OrderId], references: [id])
+    OrderId   String
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+    quantity  Int
+}

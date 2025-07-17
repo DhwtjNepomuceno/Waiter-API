@@ -1,4 +1,4 @@
-\*\*INSTALAÇÕES NECESSÁRIAS:
+INSTALAÇÕES NECESSÁRIAS:
 
 Express -> npm install express
 Prisma  -> npm install @prisma/client
