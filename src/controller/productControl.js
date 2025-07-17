@@ -1,1 +1,0 @@
-const productService = require('../services/productService');
